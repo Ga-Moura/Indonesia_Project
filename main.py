@@ -6,6 +6,7 @@ import plotly.graph_objects as go
 import numpy as np
 import streamlit as st
 from PIL import Image
+import toml
 
 
 # ***Configurando a página antes de qualquer etapa***
@@ -13,6 +14,16 @@ from PIL import Image
 # Criando a primeira página
 
 # Inicialize as variáveis de sessão
+
+config = toml.load("config.toml")
+
+# Configurações do tema
+theme_config = config.get("theme", {})
+base_theme = theme_config.get("base", "light")
+primary_color = theme_config.get("primaryColor", "#adaaaa")
+secondary_background_color = theme_config.get("secondaryBackgroundColor", "#ffffff")
+text_color = theme_config.get("textColor", "#1e1e1e")
+
 
 
 if 'is_authenticated' not in st.session_state:
